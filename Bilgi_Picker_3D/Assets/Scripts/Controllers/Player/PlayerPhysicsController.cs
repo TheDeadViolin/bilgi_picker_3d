@@ -3,6 +3,8 @@ using Managers;
 using UnityEngine;
 using DG.Tweening;
 using Signals;
+using Enums;
+
 
 namespace Controllers.Player
 {
@@ -50,7 +52,16 @@ namespace Controllers.Player
 
             if (other.CompareTag("MiniGame"))
             {
-                //Write Mini Game Conditions
+                CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Minigame, 3);
+                CoreGameSignals.Instance.onStageAreaEntered?.Invoke();
+                InputSignals.Instance.onDisableInput?.Invoke();
+                DOVirtual.DelayedCall(3, () =>
+                {
+                    CoreGameSignals.Instance.onStageAreaSuccessful?.Invoke(manager.StageValue);
+                    InputSignals.Instance.onEnableInput?.Invoke();
+                    CoreUISignals.Instance.onClosePanel?.Invoke(3);
+                });
+                return;
             }    
         }
 
@@ -61,6 +72,7 @@ namespace Controllers.Player
             var position = transform1.position;
             Gizmos.DrawSphere(new Vector3(position.x, position.y - 1.2f, position.z + 1f), 1.65f);
         }
+
         internal void OnReset()
         {
 

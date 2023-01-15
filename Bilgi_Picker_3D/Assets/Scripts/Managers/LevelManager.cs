@@ -1,4 +1,5 @@
-﻿using Commands;
+﻿using Commands.Level;
+using Commands;
 using Data.UnityObjects;
 using Signals;
 using UnityEngine;
@@ -87,6 +88,12 @@ namespace Managers
         private void OnDisable()
         {
             UnSubscribeEvents();
+        }
+
+        private void Start()
+        {
+            CoreGameSignals.Instance.onLevelInitialize?.Invoke(levelID % totalLevelCount);
+            CoreUISignals.Instance.onOpenPanel?.Invoke(Enums.UIPanelTypes.Start, 1);
         }
 
         private void OnNextLevel()

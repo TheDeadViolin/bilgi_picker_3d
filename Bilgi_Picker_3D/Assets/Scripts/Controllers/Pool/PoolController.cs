@@ -1,12 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Data.UnityObjects;
 using Data.ValueObjects;
 using DG.Tweening;
 using Signals;
 using Sirenix.OdinInspector;
 using TMPro;
+using UnityEngine;
 
 namespace Controllers.Pool
 {
@@ -52,7 +51,7 @@ namespace Controllers.Pool
         private void SubscribeEvents()
         {
             CoreGameSignals.Instance.onStageAreaSuccessful += OnActivateTweens;
-            CoreGameSignals.Instance.onStageAreaSuccessful += OnChangePoolColor;
+            CoreGameSignals.Instance.onStageAreaSuccessful += OnChangeThePoolColor;
         }
 
         private void OnActivateTweens(int stageValue)
@@ -62,18 +61,18 @@ namespace Controllers.Pool
             {
                 tween.DOPlay();
             }
-        }    
+        }
 
-        private void OnChangePoolColor(int stageValue)
+        private void OnChangeThePoolColor(int stageValue)
         {
             if (stageValue == stageID)
-                renderer.material.DOColor(new Color(0.16078242f, 0.6039216f, 0.1766218f), 1).SetEase(Ease.Linear);
+                renderer.material.DOColor(new Color(0.1607842f, 0.6039216f, 0.1766218f), 1).SetEase(Ease.Linear);
         }
 
         private void UnSubscribeEvents()
         {
             CoreGameSignals.Instance.onStageAreaSuccessful -= OnActivateTweens;
-            CoreGameSignals.Instance.onStageAreaSuccessful -= OnChangePoolColor;
+            CoreGameSignals.Instance.onStageAreaSuccessful -= OnChangeThePoolColor;
         }
 
         private void OnDisable()
@@ -94,7 +93,7 @@ namespace Controllers.Pool
             }
 
             return false;
-        }    
+        }
 
         private void SetRequiredAmountToText()
         {

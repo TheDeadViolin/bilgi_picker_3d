@@ -49,6 +49,7 @@ namespace Extensions
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+
                     break;
                 case CinemachineCoreType.Aim:
                     switch (LockAxis)
@@ -77,6 +78,7 @@ namespace Extensions
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+
                     break;
             }
         }

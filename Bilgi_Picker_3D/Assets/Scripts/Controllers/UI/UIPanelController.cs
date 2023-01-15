@@ -45,14 +45,14 @@ namespace Controllers
         }
 
         [Button("OnOpenPanel")]
-        private void OnOpenPanel(UIPanelTypes type, int layerValue)
+        public void OnOpenPanel(UIPanelTypes type, int layerValue)
         {
             OnClosePanel(layerValue);
             Instantiate(Resources.Load<GameObject>($"Screens/{type}Panel"), layers[layerValue]);
         }
 
         [Button("OnClosePanel")]
-        private void OnClosePanel(int layerValue)
+        public void OnClosePanel(int layerValue)
         {
             if (layers[layerValue].childCount > 0)
             {
